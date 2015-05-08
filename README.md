@@ -7,4 +7,7 @@ Movie Android Application (with Kotlin)
 # WatchList Mockup
 	https://github.com/prisa1987/ShowTimeDemo/issues/1
 
+# MVP:WatchList
+	https://github.com/prisa1987/ShowTimeDemo/issues/2
+
 	
