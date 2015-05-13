@@ -13,7 +13,7 @@ import java.util.ArrayList
 import java.util.HashMap
 
 /**
- * Created by Admin on 5/7/15.
+ * MainPresentImp : Update each component in MainActivity
  */
 public class MainPresenterImpl(mainView: MainView):MainPresenter {
 
@@ -23,19 +23,19 @@ public class MainPresenterImpl(mainView: MainView):MainPresenter {
     }
 
     override fun setWatchList() {
-        var watchListModel: WatchListModel = WatchListModel()
+        val watchListModel: WatchListModel = WatchListModel()
         watchListModel.setWatchInfo()
-        var titleList:ArrayList<String> = watchListModel.getTitle()
-        var posterList:HashMap<String,String> = watchListModel.getImage()
+        val titleList:ArrayList<String> = watchListModel.getTitle()
+        val posterList:HashMap<String,String> = watchListModel.getImage()
         var colCount = 0
         var rowCount = 0
         var colSpan = 3
 
 
-        for( i in 0..titleList.size()-1){
-//            Log.d("Title ",posterList.toString())
-            var posterURL = posterList.get(titleList.get(i))
-            mainView.setTitle(titleList.get(i),i+1)
+        for( i in titleList.indices){
+            val title = titleList[i]
+            val posterURL = posterList[title]
+            mainView.setTitle(title,i+1)
             mainView.setPoster(posterURL,i+1)
             mainView.setBlockLayout(i+1)
             mainView.showWatchList(colCount,rowCount,i+1,colSpan)
