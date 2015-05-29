@@ -1,4 +1,4 @@
-package com.showtime.prisa.showtimedemo.Presentation.Presenter
+package com.showtime.prisa.showtimedemo.presenter
 
 import android.content.Context
 import android.graphics.Point
@@ -6,9 +6,14 @@ import android.util.Log
 import android.view.Display
 import android.view.WindowManager
 import android.widget.RelativeLayout
-import com.showtime.prisa.showtimedemo.Presentation.Model.WatchListModel
-import com.showtime.prisa.showtimedemo.Presentation.View.MainView
+import com.showtime.prisa.showtimedemo.network.api.MovieRetrofit
+import com.showtime.prisa.showtimedemo.view.MainView
 import com.showtime.prisa.showtimedemo.R
+import com.showtime.prisa.showtimedemo.model.MovieList
+import retrofit.Callback
+import retrofit.RestAdapter
+import retrofit.RetrofitError
+import retrofit.client.Response
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -18,32 +23,33 @@ import java.util.HashMap
 public class MainPresenterImpl(mainView: MainView):MainPresenter {
 
     val mainView = mainView
+
+    //create an adapter for retrofit with base url
+    class object
+    {
+        val restAdapter:RestAdapter = RestAdapter.Builder()
+                .setEndpoint("http://api.themoviedb.org/3")
+                .build()
+
+    }
     override fun onResume() {
         setWatchList()
     }
 
     override fun setWatchList() {
-        val watchListModel: WatchListModel = WatchListModel()
-        watchListModel.setWatchInfo()
-        val titleList:ArrayList<String> = watchListModel.getTitle()
-        val posterList:HashMap<String,String> = watchListModel.getImage()
-        var colCount = 0
-        var rowCount = 0
-        var colSpan = 3
+        val retrofit: MovieRetrofit = restAdapter.create(javaClass<MovieRetrofit>())
+        retrofit.getMovieList(callBackMovieList())
+    }
 
-
-        for( i in titleList.indices){
-            val title = titleList[i]
-            val posterURL = posterList[title]
-            mainView.setTitle(title,i+1)
-            mainView.setPoster(posterURL,i+1)
-            mainView.setBlockLayout(i+1)
-            mainView.showWatchList(colCount,rowCount,i+1,colSpan)
-
-            if(colCount == colSpan-1) rowCount +=  1
-            colCount = (colCount + 1) % colSpan
+    inner public class callBackMovieList:Callback<MovieList>{
+        override fun success(movies: MovieList, response: Response?) {
+            mainView.setMovieListAdapter(movies)
+            Log.d("Response : ","Success")
         }
 
+        override fun failure(error: RetrofitError) {
+            Log.d("Response Error : ","${error}")
+        }
     }
 
 }
