@@ -1,4 +1,6 @@
-package com.showtime.prisa.showtimedemo.Presentation.Presenter
+package com.showtime.prisa.showtimedemo.presenter
+
+
 
 /**
  * Created by Admin on 5/7/15.

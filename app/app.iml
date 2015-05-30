@@ -86,20 +86,14 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="kotlin-runtime-0.11.91.4" level="project" />
-    <orderEntry type="library" exported="" name="jcl-over-slf4j-1.7.7" level="project" />
-    <orderEntry type="library" exported="" name="jackson-databind-2.4.4" level="project" />
-    <orderEntry type="library" exported="" name="jackson-core-2.4.4" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-22.1.0" level="project" />
-    <orderEntry type="library" exported="" name="commons-lang3-3.3.2" level="project" />
-    <orderEntry type="library" exported="" name="guava-18.0" level="project" />
-    <orderEntry type="library" exported="" name="slf4j-api-1.7.7" level="project" />
-    <orderEntry type="library" exported="" name="commons-codec-1.10" level="project" />
-    <orderEntry type="library" exported="" name="themoviedbapi-1.1" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-22.1.0" level="project" />
-    <orderEntry type="library" exported="" name="kotlin-stdlib-0.11.91.4" level="project" />
-    <orderEntry type="library" exported="" name="jackson-annotations-2.4.4" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-22.1.0" level="project" />
+    <orderEntry type="library" exported="" name="retrofit-1.6.1" level="project" />
+    <orderEntry type="library" exported="" name="kotlin-runtime-0.11.91" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-22.2.0" level="project" />
+    <orderEntry type="library" exported="" name="kotlin-stdlib-0.11.91" level="project" />
+    <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-22.2.0" level="project" />
   </component>
 </module>
 
