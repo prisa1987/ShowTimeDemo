@@ -8,7 +8,7 @@ import retrofit.RetrofitError
 /**
  * Created by Admin on 5/7/15.
  */
-public trait MainView {
+public interface  MainView {
     fun setMovieListAdapter(movies: MovieList)
     fun  showFail(error: RetrofitError)
 }

@@ -25,13 +25,11 @@ public class MainPresenterImpl(mainView: MainView):MainPresenter {
     val mainView = mainView
 
     //create an adapter for retrofit with base url
-    class object
-    {
-        val restAdapter:RestAdapter = RestAdapter.Builder()
+    val restAdapter:RestAdapter = RestAdapter.Builder()
                 .setEndpoint("http://api.themoviedb.org/3")
                 .build()
 
-    }
+
     override fun onResume() {
         setWatchList()
     }
