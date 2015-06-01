@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.11.91'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:0.12.200'
     }
 }
 apply plugin: 'com.android.application'
@@ -34,7 +34,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.11.91'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.12.200'
     compile 'com.squareup.retrofit:retrofit:1.6.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:recyclerview-v7:21.0.3'
 }

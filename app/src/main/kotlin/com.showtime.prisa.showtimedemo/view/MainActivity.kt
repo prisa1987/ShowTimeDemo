@@ -10,10 +10,14 @@ import android.support.v4.app
 import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarActivity
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.GridView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.showtime.prisa.showtimedemo.model.Movie
 import com.showtime.prisa.showtimedemo.presenter.MainPresenter
@@ -29,8 +33,9 @@ import kotlin.properties.Delegates
 public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListener {
 
 
-    var mGridView : GridView by Delegates.notNull()
-      val presenter: MainPresenter by Delegates.lazy {
+    var mRecyclerView : RecyclerView by Delegates.notNull()
+    var mLayoutManager : GridLayoutManager by Delegates.notNull()
+    val presenter: MainPresenter by Delegates.lazy {
           MainPresenterImpl(this)
       }
 
@@ -51,12 +56,17 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
           actionBar.addTab(tabTopRated)
           actionBar.addTab(tabNowPlaying)
 
-          mGridView = findViewById(R.id.gridView) as GridView
+          mRecyclerView = findViewById(R.id.movieRecyclerView) as RecyclerView
+          mLayoutManager = GridLayoutManager(mRecyclerView.getContext(),3)
+          mRecyclerView.setHasFixedSize(true)
+          mRecyclerView.setLayoutManager(mLayoutManager)
           setWatchList()
       }
 
       override fun setMovieListAdapter(movies: MovieList) {
-        mGridView.setAdapter(MovieAdapter(this@MainActivity, movies))
+
+          val movieAdapter:MovieAdapter = MovieAdapter(this,movies)
+          mRecyclerView.setAdapter(movieAdapter)
       }
 
       fun setWatchList() {
