@@ -32,7 +32,6 @@ import kotlin.properties.Delegates
  */
 public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListener {
 
-
     var mRecyclerView : RecyclerView by Delegates.notNull()
     var mLayoutManager : GridLayoutManager by Delegates.notNull()
     val presenter: MainPresenter by Delegates.lazy {
@@ -60,23 +59,21 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
           mLayoutManager = GridLayoutManager(mRecyclerView.getContext(),3)
           mRecyclerView.setHasFixedSize(true)
           mRecyclerView.setLayoutManager(mLayoutManager)
+
           setWatchList()
       }
 
-      override fun setMovieListAdapter(movies: MovieList) {
-
+     override fun setMovieListAdapter(movies: MovieList) {
           val movieAdapter:MovieAdapter = MovieAdapter(this,movies)
           mRecyclerView.setAdapter(movieAdapter)
       }
 
-      fun setWatchList() {
+      override fun setWatchList() {
         Log.d("Call Presenter: ", "MainPresenter")
         presenter.setWatchList()
       }
 
-    override fun showFail(error: RetrofitError) {
-        Log.d("Error Msg:", "error: ${error}")
-    }
+
 
     /* Tab */
     override fun onTabSelected(tab: ActionBar.Tab?, ft: app.FragmentTransaction?) {
