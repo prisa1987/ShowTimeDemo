@@ -20,18 +20,10 @@ import java.util.HashMap
 /**
  * MainPresentImp : Update each component in MainActivity
  */
-public class MainPresenterImpl(mainView: MainView):MainPresenter {
+public class MainPresenterImpl(mainView: MainView):MainPresenter , NetworkAdapter() {
 
     val mainView = mainView
 
-    //create an adapter for retrofit with base url
-    class object
-    {
-        val restAdapter:RestAdapter = RestAdapter.Builder()
-                .setEndpoint("http://api.themoviedb.org/3")
-                .build()
-
-    }
     override fun onResume() {
         setWatchList()
     }
@@ -43,13 +35,12 @@ public class MainPresenterImpl(mainView: MainView):MainPresenter {
 
     inner public class callBackMovieList:Callback<MovieList>{
         override fun success(movies: MovieList, response: Response?) {
-            Log.d("Response Body: ","${movies.results}")
-
             mainView.setMovieListAdapter(movies)
+            Log.d("Response Body: ","${movies.results}")
         }
 
         override fun failure(error: RetrofitError) {
-            mainView.showFail(error)
+            Log.d("Response Fail: ","${error}")
         }
     }
 

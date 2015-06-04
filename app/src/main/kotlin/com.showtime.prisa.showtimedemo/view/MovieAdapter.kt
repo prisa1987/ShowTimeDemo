@@ -1,12 +1,15 @@
 package com.showtime.prisa.showtimedemo.view
 
 import android.content.Context
+import android.content.Intent
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.showtime.prisa.showtimedemo.R
 import com.showtime.prisa.showtimedemo.model.MovieList
 import com.squareup.picasso.Picasso
@@ -14,43 +17,70 @@ import java.net.URI
 import java.net.URL
 
 
+
 import kotlin.properties.Delegates
 
 /**
  * Created by Admin on 5/28/15.
  */
-public class MovieAdapter (context: Context,movies: MovieList) : BaseAdapter(){
+public class MovieAdapter (context: Context,movies: MovieList) : RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
 
-    val context = context
-    val movies = movies
-
-    override fun getCount(): Int {
-        return movies.results!!.size()
+    var movieList:MovieList by Delegates.notNull()
+    var mContext:Context by  Delegates.notNull()
+    var movieID:Int by Delegates.notNull()
+    init{
+        movieList = movies
+        mContext = context
     }
 
-    override fun getItem(position: Int): Any? {
-        return movies.results!!.get(position)
+    public inner class ViewHolder(view:View) : RecyclerView.ViewHolder(view),View.OnClickListener{
+
+
+        var titleView:TextView  by Delegates.notNull()
+        var posterView:ImageView  by Delegates.notNull()
+
+        init
+        {
+            view.setOnClickListener(this@ViewHolder)
+            titleView = view.findViewById(R.id.item_text) as TextView
+            posterView = view.findViewById(R.id.item_image) as ImageView
+        }
+
+
+        override fun onClick(v: View) {
+            val intent:Intent = Intent(mContext,javaClass<MovieDetailActivity>())
+            movieID =  movieList!!.results!!.get(getPosition())!!.id!!.toInt()
+            intent.putExtra("movieID",movieID)
+            Toast.makeText(mContext,"position : ${getPosition()}",Toast.LENGTH_LONG).show()
+            mContext.startActivity(intent)
+        }
+
     }
 
-    override fun getItemId(position: Int): Long {
-        return 0
+    // Create new views (invoked by the layout manager)
+    override fun getItemCount(): Int {
+       return movieList!!.results!!.size()
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-       var view:View
-       var mInflater:LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-       if(convertView == null){
-            view = mInflater.inflate(R.layout.row_grid,parent,false)
-       }else  view = convertView
+    // Replace the contents of a view (invoked by the layout manager)
+    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
 
-        val titleView:TextView = view.findViewById(R.id.item_text) as TextView
-        titleView.setText( movies.results!!.get(position)!!.title)
-        val posterView:ImageView = view.findViewById(R.id.item_image) as ImageView
-        Picasso.with(context)
-                .load("http://image.tmdb.org/t/p/w300/${movies.results!!.get(position).poster_path}")
-                .into(posterView)
+        holder!!.titleView!!.setText(movieList!!.results!!.get(position)!!.title)
+        Picasso.with(mContext)
+                .load("http://image.tmdb.org/t/p/w300/${movieList!!.results!!.get(position).poster_path}")
+                .into(holder.posterView)
 
-        return view
+
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder? {
+        // create a new view
+        val mInflater:LayoutInflater = parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view:View = mInflater.inflate(R.layout.row_grid,parent,false)
+        // set the view's size, margins, paddings and layout parameters
+        val viewHolder:ViewHolder = ViewHolder(view)
+        return viewHolder
+    }
+
 
 }
