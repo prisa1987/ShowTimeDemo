@@ -1,7 +1,6 @@
 package com.showtime.prisa.showtimedemo.view
 
 import android.app.FragmentTransaction
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.media.Image
@@ -15,13 +14,11 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.GridView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
-import android.widget.Toast
 import com.showtime.prisa.showtimedemo.model.Movie
 import com.showtime.prisa.showtimedemo.presenter.MainPresenter
 import com.showtime.prisa.showtimedemo.presenter.MainPresenterImpl
@@ -37,8 +34,6 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
 
     var mRecyclerView : RecyclerView by Delegates.notNull()
     var mLayoutManager : GridLayoutManager by Delegates.notNull()
-    var movieList:MovieList by Delegates.notNull()
-
     val presenter: MainPresenter by Delegates.lazy {
           MainPresenterImpl(this)
       }
@@ -54,7 +49,7 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
                   .setText("Now Playing")
                   .setTabListener(this)
           val tabTopRated:ActionBar.Tab = actionBar.newTab()
-                  .setText("Top rate")
+                  .setText("Top rated")
                   .setTabListener(this)
 
           actionBar.addTab(tabTopRated)
@@ -69,8 +64,7 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
       }
 
      override fun setMovieListAdapter(movies: MovieList) {
-         movieList = movies
-          var  movieAdapter:MovieAdapter = MovieAdapter(this,movies)
+          val movieAdapter:MovieAdapter = MovieAdapter(this,movies)
           mRecyclerView.setAdapter(movieAdapter)
       }
 
@@ -78,6 +72,8 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
         Log.d("Call Presenter: ", "MainPresenter")
         presenter.setWatchList()
       }
+
+
 
     /* Tab */
     override fun onTabSelected(tab: ActionBar.Tab?, ft: app.FragmentTransaction?) {

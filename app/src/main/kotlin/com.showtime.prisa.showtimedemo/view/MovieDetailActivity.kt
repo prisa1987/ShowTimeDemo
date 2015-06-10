@@ -32,6 +32,7 @@ public class MovieDetailActivity : AppCompatActivity(),MovieDetailView {
             movieID =  bundle.getInt("movieID")
         }
         setContentView(R.layout.activity_moviedetail)
+
         setMovieInfo()
     }
 
@@ -54,8 +55,8 @@ public class MovieDetailActivity : AppCompatActivity(),MovieDetailView {
     override fun setVideo(uri: Uri) {
         val mediaController:MediaController = MediaController(this@MovieDetailActivity)
         val videoView:VideoView = findViewById(R.id.movieVideo) as VideoView
-//        videoView.setMediaController(mediaController)
-//        videoView.setVideoURI(uri)
+        videoView.setMediaController(mediaController)
+        videoView.setVideoURI(uri)
 //        videoView.requestFocus()
 
     }

@@ -36,8 +36,9 @@ public class MovieDetailPresenterImpl(movieDetailView: MovieDetailView) : MovieD
        override fun success(movie: Movie, response: Response?) {
            movieDetailView.setTitle(movie.title.toString())
            movieDetailView.setDetail(movie.overview.toString())
-           movieDetailView.setRating(movie.rating!!.toFloat())
-           movieDetailView.setVoteNumber(movie.voteCount!!.toInt())
+
+
+
        }
    }
 
