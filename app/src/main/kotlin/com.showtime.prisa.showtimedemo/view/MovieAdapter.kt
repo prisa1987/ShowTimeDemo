@@ -36,16 +36,12 @@ public class MovieAdapter (context: Context,movies: MovieList) : RecyclerView.Ad
     public inner class ViewHolder(view:View) : RecyclerView.ViewHolder(view),View.OnClickListener{
 
 
-        var titleView:TextView  by Delegates.notNull()
-        var posterView:ImageView  by Delegates.notNull()
+        var titleView:TextView = view.findViewById(R.id.item_text) as TextView
+        var posterView:ImageView = view.findViewById(R.id.item_image) as ImageView
 
-        init
-        {
+        init {
             view.setOnClickListener(this@ViewHolder)
-            titleView = view.findViewById(R.id.item_text) as TextView
-            posterView = view.findViewById(R.id.item_image) as ImageView
         }
-
 
         override fun onClick(v: View) {
             val intent:Intent = Intent(mContext,javaClass<MovieDetailActivity>())
