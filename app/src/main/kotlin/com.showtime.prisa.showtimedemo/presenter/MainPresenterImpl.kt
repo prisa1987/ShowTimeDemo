@@ -47,7 +47,7 @@ public class MainPresenterImpl(mainView: MainView):MainPresenter {
         }
 
         override fun failure(error: RetrofitError) {
-            mainView.showFail(error)
+          Log.d("Response Error","${error}")
         }
     }
 
