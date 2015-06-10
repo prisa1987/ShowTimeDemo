@@ -35,7 +35,7 @@ public class MainActivity: AppCompatActivity(), MainView , ActionBar.TabListener
 
     var mRecyclerView: RecyclerView by Delegates.notNull()
     var mLayoutManager: GridLayoutManager by Delegates.notNull()
-    val presente: MainPresenter by Delegates.lazy {
+    val presenter: MainPresenter by Delegates.lazy {
           MainPresenterImpl(this)
       }
 
