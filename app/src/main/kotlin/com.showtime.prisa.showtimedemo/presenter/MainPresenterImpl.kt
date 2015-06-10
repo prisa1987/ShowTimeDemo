@@ -40,7 +40,7 @@ public class MainPresenterImpl(mainView: MainView):MainPresenter , NetworkAdapte
         }
 
         override fun failure(error: RetrofitError) {
-            Log.d("Response Fail: ","${error}")
+          Log.d("Response Error","${error}")
         }
     }
 

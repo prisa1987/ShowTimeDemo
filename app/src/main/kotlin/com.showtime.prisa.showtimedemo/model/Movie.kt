@@ -7,6 +7,7 @@ import kotlin.properties.Delegates
  * Created by Admin on 5/28/15.
  */
 public class Movie {
+<<<<<<< HEAD
     public var id:Int? = 0
     public var title:String? = null
     public var poster_path:String? = null
@@ -17,4 +18,9 @@ public class Movie {
 
     @SerializedName("vote_count")
     public var voteCount:Int? = 0
+=======
+    public var id: Int = 0
+    public var title: String = ""
+    public var poster_path: String = ""
+>>>>>>> refine_code
 }

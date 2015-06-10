@@ -30,10 +30,11 @@ import kotlin.properties.Delegates
 /**
  * MainActivity : View of WatchList ,Show title,poster
  */
-public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListener {
+public class MainActivity: AppCompatActivity(), MainView , ActionBar.TabListener {
 
-    var mRecyclerView : RecyclerView by Delegates.notNull()
-    var mLayoutManager : GridLayoutManager by Delegates.notNull()
+    var mRecyclerView: RecyclerView by Delegates.notNull()
+    var mLayoutManager: GridLayoutManager by Delegates.notNull()
+
     val presenter: MainPresenter by Delegates.lazy {
           MainPresenterImpl(this)
       }
@@ -42,7 +43,7 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
           getWindow().requestFeature(Window.FEATURE_ACTION_BAR)
           super<AppCompatActivity>.onCreate(savedInstanceState)
           setContentView(R.layout.activity_watchlist)
-          val actionBar : ActionBar = getSupportActionBar()
+          val actionBar: ActionBar = getSupportActionBar()
           actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS)
 
           val tabNowPlaying:ActionBar.Tab = actionBar.newTab()
@@ -63,8 +64,9 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
           setWatchList()
       }
 
-     override fun setMovieListAdapter(movies: MovieList) {
-          val movieAdapter:MovieAdapter = MovieAdapter(this,movies)
+
+      override fun setMovieListAdapter(movies: MovieList) {
+          val movieAdapter: MovieAdapter = MovieAdapter(this,movies)
           mRecyclerView.setAdapter(movieAdapter)
       }
 
