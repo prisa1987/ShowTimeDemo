@@ -74,9 +74,7 @@ public class MainActivity : AppCompatActivity(), MainView , ActionBar.TabListene
         presenter.setWatchList()
       }
 
-    override fun showFail(error: RetrofitError) {
-        Log.d("Error Msg:", "error: ${error}")
-    }
+
 
     /* Tab */
     override fun onTabSelected(tab: ActionBar.Tab?, ft: app.FragmentTransaction?) {

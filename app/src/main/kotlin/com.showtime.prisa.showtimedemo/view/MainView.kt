@@ -10,5 +10,4 @@ import retrofit.RetrofitError
  */
 public interface  MainView {
     fun setMovieListAdapter(movies: MovieList)
-    fun  showFail(error: RetrofitError)
 }

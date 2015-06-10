@@ -23,23 +23,13 @@ import kotlin.properties.Delegates
  */
 public class MovieAdapter (context: Context,movies: MovieList) : RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
 
-    var movieList:MovieList by Delegates.notNull()
-    var mContext:Context by  Delegates.notNull()
-    init{
-        movieList = movies
-        mContext = context
-    }
-    public inner class ViewHolder(view:View) : RecyclerView.ViewHolder(view){
+    var movieList:MovieList = movies
+    var mContext:Context = context
 
-        var  titleView:TextView  by Delegates.notNull()
-        var posterView:ImageView  by Delegates.notNull()
+    inner class ViewHolder(view:View) : RecyclerView.ViewHolder(view){
 
-        init
-        {
-            titleView = view.findViewById(R.id.item_text) as TextView
-            posterView = view.findViewById(R.id.item_image) as ImageView
-
-        }
+        var  titleView:TextView  =  view.findViewById(R.id.item_text) as TextView
+        var posterView:ImageView  =  view.findViewById(R.id.item_image) as ImageView
 
     }
 
